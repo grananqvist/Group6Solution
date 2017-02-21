@@ -19,7 +19,8 @@ namespace AgentApplication
             //get latest input (MemoryItem) from ListenerProcess, which should be the stock ticker given
             MemoryItem latestListenerItem = ownerAgent.WorkingMemory.GetLastItemByTag(MemoryItemTags.ListenerProcess);
             string tickerToQuery = latestListenerItem.Content.ToLower();
-           
+            //Convert to ticker name of whole name of stock was given
+            tickerToQuery = DialogueInputStrings.convertNameToTicker(tickerToQuery);
 
             MemoryItem outputItem = new MemoryItem();
             outputItem.CreationDateTime = DateTime.Now;

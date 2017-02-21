@@ -74,6 +74,7 @@
     <Compile Include="AgentMainForm.Designer.cs">
       <DependentUpon>AgentMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DialogueInputStrings.cs" />
     <Compile Include="LimitExecutionAction.cs" />
     <Compile Include="MarketObjects\StockInfo.cs" />
     <Compile Include="MarketObjects\Trade.cs" />

@@ -51,17 +51,20 @@
             this.stockInfoTextBox = new System.Windows.Forms.TextBox();
             this.portfolioTabPage = new System.Windows.Forms.TabPage();
             this.portfolioHeaderPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.portfolioHeaderCol8 = new System.Windows.Forms.Label();
-            this.portfolioHeaderCol7 = new System.Windows.Forms.Label();
+            this.portfolioHeaderCol6 = new System.Windows.Forms.Label();
+            this.portfolioHeaderCol5 = new System.Windows.Forms.Label();
             this.portfolioHeaderCol4 = new System.Windows.Forms.Label();
             this.portfolioHeaderCol3 = new System.Windows.Forms.Label();
             this.portfolioHeaderCol2 = new System.Windows.Forms.Label();
             this.portfolioHeaderCol1 = new System.Windows.Forms.Label();
             this.portfolioHeaderCol0 = new System.Windows.Forms.Label();
+            this.portfolioHeaderCol8 = new System.Windows.Forms.Label();
+            this.portfolioHeaderCol7 = new System.Windows.Forms.Label();
             this.portfolioLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.portfolioHeaderCol5 = new System.Windows.Forms.Label();
-            this.portfolioHeaderCol6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.TotalEquityLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.TotalEquityTextLabel = new System.Windows.Forms.Label();
+            this.TotalEquityLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.agentTabControl.SuspendLayout();
             this.communicationLogTabPage.SuspendLayout();
@@ -73,6 +76,7 @@
             this.portfolioTabPage.SuspendLayout();
             this.portfolioHeaderPanel.SuspendLayout();
             this.portfolioLayoutPanel.SuspendLayout();
+            this.TotalEquityLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -180,7 +184,7 @@
             this.workingMemoryTabPage.Location = new System.Drawing.Point(4, 22);
             this.workingMemoryTabPage.Name = "workingMemoryTabPage";
             this.workingMemoryTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.workingMemoryTabPage.Size = new System.Drawing.Size(788, 176);
+            this.workingMemoryTabPage.Size = new System.Drawing.Size(726, 176);
             this.workingMemoryTabPage.TabIndex = 3;
             this.workingMemoryTabPage.Text = "Working memory";
             this.workingMemoryTabPage.UseVisualStyleBackColor = true;
@@ -191,7 +195,7 @@
             this.memoryViewer.InvocationListVisible = false;
             this.memoryViewer.Location = new System.Drawing.Point(3, 3);
             this.memoryViewer.Name = "memoryViewer";
-            this.memoryViewer.Size = new System.Drawing.Size(782, 170);
+            this.memoryViewer.Size = new System.Drawing.Size(720, 170);
             this.memoryViewer.TabIndex = 0;
             // 
             // actionToolStrip
@@ -243,7 +247,7 @@
             this.seachStockTabPage.Location = new System.Drawing.Point(4, 22);
             this.seachStockTabPage.Name = "seachStockTabPage";
             this.seachStockTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.seachStockTabPage.Size = new System.Drawing.Size(788, 336);
+            this.seachStockTabPage.Size = new System.Drawing.Size(726, 336);
             this.seachStockTabPage.TabIndex = 0;
             this.seachStockTabPage.Text = "Search stock";
             this.seachStockTabPage.UseVisualStyleBackColor = true;
@@ -266,6 +270,7 @@
             // 
             // portfolioTabPage
             // 
+            this.portfolioTabPage.Controls.Add(this.TotalEquityLayoutPanel);
             this.portfolioTabPage.Controls.Add(this.portfolioHeaderPanel);
             this.portfolioTabPage.Controls.Add(this.portfolioLayoutPanel);
             this.portfolioTabPage.Location = new System.Drawing.Point(4, 22);
@@ -287,7 +292,7 @@
             this.portfolioHeaderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.portfolioHeaderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.portfolioHeaderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.portfolioHeaderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.portfolioHeaderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.portfolioHeaderPanel.Controls.Add(this.portfolioHeaderCol6, 6, 0);
             this.portfolioHeaderPanel.Controls.Add(this.portfolioHeaderCol5, 5, 0);
             this.portfolioHeaderPanel.Controls.Add(this.portfolioHeaderCol4, 4, 0);
@@ -303,6 +308,83 @@
             this.portfolioHeaderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.portfolioHeaderPanel.Size = new System.Drawing.Size(723, 29);
             this.portfolioHeaderPanel.TabIndex = 1;
+            // 
+            // portfolioHeaderCol6
+            // 
+            this.portfolioHeaderCol6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol6.AutoSize = true;
+            this.portfolioHeaderCol6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol6.Location = new System.Drawing.Point(422, 5);
+            this.portfolioHeaderCol6.Name = "portfolioHeaderCol6";
+            this.portfolioHeaderCol6.Size = new System.Drawing.Size(89, 18);
+            this.portfolioHeaderCol6.TabIndex = 6;
+            this.portfolioHeaderCol6.Text = "Target Profit";
+            // 
+            // portfolioHeaderCol5
+            // 
+            this.portfolioHeaderCol5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol5.AutoSize = true;
+            this.portfolioHeaderCol5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol5.Location = new System.Drawing.Point(335, 5);
+            this.portfolioHeaderCol5.Name = "portfolioHeaderCol5";
+            this.portfolioHeaderCol5.Size = new System.Drawing.Size(76, 18);
+            this.portfolioHeaderCol5.TabIndex = 5;
+            this.portfolioHeaderCol5.Text = "Stop Loss";
+            // 
+            // portfolioHeaderCol4
+            // 
+            this.portfolioHeaderCol4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol4.AutoSize = true;
+            this.portfolioHeaderCol4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol4.Location = new System.Drawing.Point(244, 5);
+            this.portfolioHeaderCol4.Name = "portfolioHeaderCol4";
+            this.portfolioHeaderCol4.Size = new System.Drawing.Size(80, 18);
+            this.portfolioHeaderCol4.TabIndex = 4;
+            this.portfolioHeaderCol4.Text = "Entry Price";
+            // 
+            // portfolioHeaderCol3
+            // 
+            this.portfolioHeaderCol3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol3.AutoSize = true;
+            this.portfolioHeaderCol3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol3.Location = new System.Drawing.Point(172, 5);
+            this.portfolioHeaderCol3.Name = "portfolioHeaderCol3";
+            this.portfolioHeaderCol3.Size = new System.Drawing.Size(62, 18);
+            this.portfolioHeaderCol3.TabIndex = 3;
+            this.portfolioHeaderCol3.Text = "Quantity";
+            // 
+            // portfolioHeaderCol2
+            // 
+            this.portfolioHeaderCol2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol2.AutoSize = true;
+            this.portfolioHeaderCol2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol2.Location = new System.Drawing.Point(118, 5);
+            this.portfolioHeaderCol2.Name = "portfolioHeaderCol2";
+            this.portfolioHeaderCol2.Size = new System.Drawing.Size(47, 18);
+            this.portfolioHeaderCol2.TabIndex = 2;
+            this.portfolioHeaderCol2.Text = "Stock";
+            // 
+            // portfolioHeaderCol1
+            // 
+            this.portfolioHeaderCol1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol1.AutoSize = true;
+            this.portfolioHeaderCol1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol1.Location = new System.Drawing.Point(35, 5);
+            this.portfolioHeaderCol1.Name = "portfolioHeaderCol1";
+            this.portfolioHeaderCol1.Size = new System.Drawing.Size(77, 18);
+            this.portfolioHeaderCol1.TabIndex = 1;
+            this.portfolioHeaderCol1.Text = "Entry Date";
+            // 
+            // portfolioHeaderCol0
+            // 
+            this.portfolioHeaderCol0.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.portfolioHeaderCol0.AutoSize = true;
+            this.portfolioHeaderCol0.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portfolioHeaderCol0.Location = new System.Drawing.Point(5, 5);
+            this.portfolioHeaderCol0.Name = "portfolioHeaderCol0";
+            this.portfolioHeaderCol0.Size = new System.Drawing.Size(22, 18);
+            this.portfolioHeaderCol0.TabIndex = 0;
+            this.portfolioHeaderCol0.Text = "ID";
             // 
             // portfolioHeaderCol8
             // 
@@ -320,66 +402,11 @@
             this.portfolioHeaderCol7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.portfolioHeaderCol7.AutoSize = true;
             this.portfolioHeaderCol7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol7.Location = new System.Drawing.Point(521, 5);
+            this.portfolioHeaderCol7.Location = new System.Drawing.Point(520, 5);
             this.portfolioHeaderCol7.Name = "portfolioHeaderCol7";
             this.portfolioHeaderCol7.Size = new System.Drawing.Size(86, 18);
             this.portfolioHeaderCol7.TabIndex = 5;
             this.portfolioHeaderCol7.Text = "Latest Price";
-            // 
-            // portfolioHeaderCol4
-            // 
-            this.portfolioHeaderCol4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol4.AutoSize = true;
-            this.portfolioHeaderCol4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol4.Location = new System.Drawing.Point(245, 5);
-            this.portfolioHeaderCol4.Name = "portfolioHeaderCol4";
-            this.portfolioHeaderCol4.Size = new System.Drawing.Size(80, 18);
-            this.portfolioHeaderCol4.TabIndex = 4;
-            this.portfolioHeaderCol4.Text = "Entry Price";
-            // 
-            // portfolioHeaderCol3
-            // 
-            this.portfolioHeaderCol3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol3.AutoSize = true;
-            this.portfolioHeaderCol3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol3.Location = new System.Drawing.Point(173, 5);
-            this.portfolioHeaderCol3.Name = "portfolioHeaderCol3";
-            this.portfolioHeaderCol3.Size = new System.Drawing.Size(62, 18);
-            this.portfolioHeaderCol3.TabIndex = 3;
-            this.portfolioHeaderCol3.Text = "Quantity";
-            // 
-            // portfolioHeaderCol2
-            // 
-            this.portfolioHeaderCol2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol2.AutoSize = true;
-            this.portfolioHeaderCol2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol2.Location = new System.Drawing.Point(119, 5);
-            this.portfolioHeaderCol2.Name = "portfolioHeaderCol2";
-            this.portfolioHeaderCol2.Size = new System.Drawing.Size(47, 18);
-            this.portfolioHeaderCol2.TabIndex = 2;
-            this.portfolioHeaderCol2.Text = "Stock";
-            // 
-            // portfolioHeaderCol1
-            // 
-            this.portfolioHeaderCol1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol1.AutoSize = true;
-            this.portfolioHeaderCol1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol1.Location = new System.Drawing.Point(36, 5);
-            this.portfolioHeaderCol1.Name = "portfolioHeaderCol1";
-            this.portfolioHeaderCol1.Size = new System.Drawing.Size(77, 18);
-            this.portfolioHeaderCol1.TabIndex = 1;
-            this.portfolioHeaderCol1.Text = "Entry Date";
-            // 
-            // portfolioHeaderCol0
-            // 
-            this.portfolioHeaderCol0.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol0.AutoSize = true;
-            this.portfolioHeaderCol0.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol0.Location = new System.Drawing.Point(5, 5);
-            this.portfolioHeaderCol0.Name = "portfolioHeaderCol0";
-            this.portfolioHeaderCol0.Size = new System.Drawing.Size(22, 18);
-            this.portfolioHeaderCol0.TabIndex = 0;
-            this.portfolioHeaderCol0.Text = "ID";
             // 
             // portfolioLayoutPanel
             // 
@@ -392,7 +419,7 @@
             this.portfolioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.portfolioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.portfolioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.portfolioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.portfolioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.portfolioLayoutPanel.Controls.Add(this.label1, 0, 0);
             this.portfolioLayoutPanel.Location = new System.Drawing.Point(0, 30);
             this.portfolioLayoutPanel.Name = "portfolioLayoutPanel";
@@ -400,28 +427,6 @@
             this.portfolioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.portfolioLayoutPanel.Size = new System.Drawing.Size(723, 30);
             this.portfolioLayoutPanel.TabIndex = 0;
-            // 
-            // portfolioHeaderCol5
-            // 
-            this.portfolioHeaderCol5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol5.AutoSize = true;
-            this.portfolioHeaderCol5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol5.Location = new System.Drawing.Point(336, 5);
-            this.portfolioHeaderCol5.Name = "portfolioHeaderCol5";
-            this.portfolioHeaderCol5.Size = new System.Drawing.Size(76, 18);
-            this.portfolioHeaderCol5.TabIndex = 5;
-            this.portfolioHeaderCol5.Text = "Stop Loss";
-            // 
-            // portfolioHeaderCol6
-            // 
-            this.portfolioHeaderCol6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.portfolioHeaderCol6.AutoSize = true;
-            this.portfolioHeaderCol6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portfolioHeaderCol6.Location = new System.Drawing.Point(423, 5);
-            this.portfolioHeaderCol6.Name = "portfolioHeaderCol6";
-            this.portfolioHeaderCol6.Size = new System.Drawing.Size(89, 18);
-            this.portfolioHeaderCol6.TabIndex = 6;
-            this.portfolioHeaderCol6.Text = "Target Profit";
             // 
             // label1
             // 
@@ -433,6 +438,43 @@
             this.label1.Size = new System.Drawing.Size(22, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "ID";
+            // 
+            // TotalEquityLayoutPanel
+            // 
+            this.TotalEquityLayoutPanel.ColumnCount = 2;
+            this.TotalEquityLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.33498F));
+            this.TotalEquityLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.66502F));
+            this.TotalEquityLayoutPanel.Controls.Add(this.TotalEquityLabel, 0, 0);
+            this.TotalEquityLayoutPanel.Controls.Add(this.TotalEquityTextLabel, 0, 0);
+            this.TotalEquityLayoutPanel.Location = new System.Drawing.Point(516, 306);
+            this.TotalEquityLayoutPanel.Name = "TotalEquityLayoutPanel";
+            this.TotalEquityLayoutPanel.RowCount = 1;
+            this.TotalEquityLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TotalEquityLayoutPanel.Size = new System.Drawing.Size(210, 30);
+            this.TotalEquityLayoutPanel.TabIndex = 2;
+            this.TotalEquityLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // TotalEquityTextLabel
+            // 
+            this.TotalEquityTextLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TotalEquityTextLabel.AutoSize = true;
+            this.TotalEquityTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalEquityTextLabel.Location = new System.Drawing.Point(4, 6);
+            this.TotalEquityTextLabel.Name = "TotalEquityTextLabel";
+            this.TotalEquityTextLabel.Size = new System.Drawing.Size(85, 18);
+            this.TotalEquityTextLabel.TabIndex = 6;
+            this.TotalEquityTextLabel.Text = "Total Equity";
+            // 
+            // TotalEquityLabel
+            // 
+            this.TotalEquityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TotalEquityLabel.AutoSize = true;
+            this.TotalEquityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalEquityLabel.Location = new System.Drawing.Point(123, 6);
+            this.TotalEquityLabel.Name = "TotalEquityLabel";
+            this.TotalEquityLabel.Size = new System.Drawing.Size(56, 18);
+            this.TotalEquityLabel.TabIndex = 7;
+            this.TotalEquityLabel.Text = "100000";
             // 
             // AgentMainForm
             // 
@@ -463,6 +505,8 @@
             this.portfolioHeaderPanel.PerformLayout();
             this.portfolioLayoutPanel.ResumeLayout(false);
             this.portfolioLayoutPanel.PerformLayout();
+            this.TotalEquityLayoutPanel.ResumeLayout(false);
+            this.TotalEquityLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,6 +547,9 @@
         private System.Windows.Forms.Label portfolioHeaderCol5;
         private System.Windows.Forms.Label portfolioHeaderCol6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel TotalEquityLayoutPanel;
+        private System.Windows.Forms.Label TotalEquityTextLabel;
+        private System.Windows.Forms.Label TotalEquityLabel;
     }
 }
 

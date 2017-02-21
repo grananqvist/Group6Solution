@@ -18,9 +18,10 @@ namespace AgentApplication
     public class PortfolioProcess : BrainProcess
     {
         private List<Trade> stockList = null;
-
+         
         private DateTime timeOfLastInput;
-        private System.Windows.Forms.TableLayoutPanel portfolioTable;
+        private TableLayoutPanel portfolioTable;
+        private Label totalEquity;
         private double availableFunds = 0;
 
         private string stockInFocus = null;
@@ -33,9 +34,10 @@ namespace AgentApplication
 
         private string processActivatedOnFailure = null; // The process that will be activated IF the current process fails (see HandleWorkingMemoryChanged)
 
-        public PortfolioProcess(System.Windows.Forms.TableLayoutPanel portfolioTable, double startingCapital)
+        public PortfolioProcess(TableLayoutPanel portfolioTable, Label totalEquity, double startingCapital)
         {
             this.portfolioTable = portfolioTable;
+            this.totalEquity = totalEquity;
             this.availableFunds = startingCapital;
             stockList = new List<Trade>();
             timeOfLastResponseSearch = DateTime.Now;
@@ -217,6 +219,14 @@ namespace AgentApplication
             totalTextLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             totalTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             portfolioTable.Controls.Add(totalTextLabel, 7, portfolioTable.RowCount-1);
+
+            //Label for total Equity
+            double equity = availableFunds;
+            foreach ( Trade tempTrade in stockList)
+            {
+                equity += tempTrade.LastPrice * tempTrade.Quantity;
+            }
+            totalEquity.Text = equity.ToString("F2");
         }
 
         
@@ -284,6 +294,57 @@ namespace AgentApplication
                         
                     }
                     timeOfLastResponsePortfolio = idaItem.CreationDateTime;
+
+                    //check for stop losses and target profits hit
+                    foreach (Trade tempTrade in new List<Trade>(stockList))
+                    {
+                        string exitMessage = "";
+
+                        //if short
+                        if (tempTrade.Quantity < 0)
+                        {
+                            if (tempTrade.TargetProfit != 0 && (tempTrade.LastPrice <= tempTrade.TargetProfit))
+                            {
+                                //There is a target profit set and it's hit
+                                TryExitPosition(tempTrade.Id);
+                                exitMessage = "Target has been hit for trade id " + tempTrade.Id + " at " + tempTrade.LastPrice;
+                            }
+                            else if (tempTrade.StopLoss != 0 && (tempTrade.LastPrice >= tempTrade.StopLoss))
+                            {
+                                //There is a stop loss set and it's hit
+                                TryExitPosition(tempTrade.Id);
+                                exitMessage = "Stop loss has been hit for trade id " + tempTrade.Id + " at " + tempTrade.LastPrice;
+                            }
+                        }
+                        //if long
+                        else
+                        {
+                            if (tempTrade.TargetProfit != 0 && (tempTrade.LastPrice >= tempTrade.TargetProfit))
+                            {
+                                //There is a target profit set and it's hit
+                                TryExitPosition(tempTrade.Id);
+                                exitMessage = "Target has been hit for trade id " + tempTrade.Id + " at " + tempTrade.LastPrice;
+                            }
+                            else if (tempTrade.StopLoss != 0 && (tempTrade.LastPrice <= tempTrade.StopLoss))
+                            {
+                                //There is a stop loss set and it's hit
+                                TryExitPosition(tempTrade.Id);
+                                exitMessage = "Stop loss has been hit for trade id " + tempTrade.Id + " at " + tempTrade.LastPrice;
+                            }
+                        }
+
+                        //If agent has exited a trade, tell about it
+                        if (exitMessage != "")
+                        {
+                            MemoryItem exitTradeItem = new MemoryItem();
+                            exitTradeItem.CreationDateTime = DateTime.Now;
+                            exitTradeItem.Tag = MemoryItemTags.SpeechProcess;
+                            exitTradeItem.Content = exitMessage;
+                            ownerAgent.WorkingMemory.InsertItem(exitTradeItem);
+
+                        }
+
+                    }
 
                     //Repaint form containing info about positions
                     if (portfolioTable.InvokeRequired)

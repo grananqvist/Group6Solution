@@ -62,7 +62,7 @@ namespace AgentApplication
             SetUpAgent();
             
 
-            PortfolioProcess portfolioProcess = new PortfolioProcess(portfolioLayoutPanel, 100000);
+            PortfolioProcess portfolioProcess = new PortfolioProcess(portfolioLayoutPanel, TotalEquityLabel, 100000);
             portfolioProcess.Name = "Portfolio";
             agent.BrainProcessList.Add(portfolioProcess);
             portfolioProcess.ActiveOnStartup = true;
@@ -98,7 +98,8 @@ namespace AgentApplication
             InteractionItem mainDialogueItem2 = new InteractionItem();
             mainDialogueItem2.Name = "MainDialogueItem2";
             QueryIDAAction readAction2 = new QueryIDAAction();
-            readAction2.InputList.Add("ERIC-B");
+            readAction2.InputList.AddRange(DialogueInputStrings.getStockNameList());
+            readAction2.InputList.AddRange(DialogueInputStrings.getStockTickerInputs());
             readAction2.TargetDialogueItemName = "MainDialogueItem3";
             mainDialogueItem2.ActionList.Add(readAction2);
             mainDialogue.ItemList.Add(mainDialogueItem2);
@@ -520,294 +521,11 @@ namespace AgentApplication
             FinalizeSetup();
         }
 
-        private void GenerateTestAgent1()
-        {
-            SetUpAgent();
-            DialogueProcess dialogue1 = new DialogueProcess();
-            dialogue1.Name = "Dialogue1";
-            agent.BrainProcessList.Add(dialogue1);
-            dialogue1.ActiveOnStartup = true;
-            InteractionItem dialogueItem1 = new InteractionItem();
-            dialogueItem1.Name = "Item1";
-            dialogueItem1.MaximumRepetitionCount = 2;
-            ResponseAction action1 = new ResponseAction();
-            action1.InputList.Add("Hello");
-            action1.InputList.Add("Hi");
-            action1.TargetDialogueItemName = "Item2";
-            action1.OutputList.Add("Hello user");
-            dialogueItem1.ActionList.Add(action1);
-            dialogue1.ItemList.Add(dialogueItem1);
-            InteractionItem dialogueItem2 = new InteractionItem();
-            dialogueItem2.MillisecondDelay = 500;
-            dialogueItem2.Name = "Item2";
-            OutputAction action2 = new OutputAction();
-            action2.OutputList.Add("How can I be of service?");
-            action2.BrainProcessToDeactivate = dialogue1.Name;
-            dialogueItem2.ActionList.Add(action2);
-            dialogue1.ItemList.Add(dialogueItem2);
-            FinalizeSetup();
-        }
-
-        private void GenerateTestAgent2()
-        {
-            SetUpAgent();
-            // Define brain processes
-            DialogueProcess dialogue1 = new DialogueProcess();
-            dialogue1.Name = "Dialogue1";
-            dialogue1.ProcessActivatedOnFailure = dialogue1.Name;
-            agent.BrainProcessList.Add(dialogue1);
-            dialogue1.ActiveOnStartup = true;
-            startButton.Enabled = true;
-            InteractionItem dialogueItem1 = new InteractionItem();
-            dialogueItem1.Name = "Item1";
-            ResponseAction action1 = new ResponseAction();
-            action1.InputList.Add("Hello");
-            action1.TargetDialogueItemName = "Item2";
-            action1.OutputList.Add("Hello user");
-            dialogueItem1.ActionList.Add(action1);
-            dialogue1.ItemList.Add(dialogueItem1);
-            InteractionItem dialogueItem2 = new InteractionItem();
-            dialogueItem2.MillisecondDelay = 1000;
-            dialogueItem2.Name = "Item2";
-            ResponseAction action2 = new ResponseAction();
-            action2.TargetDialogueItemName = "Item3";
-            action2.OutputList.Add("How are you today?");
-            dialogueItem2.ActionList.Add(action2);
-            dialogue1.ItemList.Add(dialogueItem2);
-            InteractionItem dialogueItem3 = new InteractionItem();
-            dialogueItem3.Name = "Item3";
-            ResponseAction action31 = new ResponseAction();
-            action31.InputList.Add("Not so good");
-            action31.OutputList.Add("I'm sorry to hear that");
-            action31.TargetDialogueItemName = "NegativeItem1";
-            dialogueItem3.ActionList.Add(action31);
-            ResponseAction action32 = new ResponseAction();
-            action32.InputList.Add("Fine");
-            action32.OutputList.Add("I'm happy to hear that");
-            action32.TargetDialogueItemName = "PositiveItem1";
-            dialogueItem3.ActionList.Add(action32);
-            dialogue1.ItemList.Add(dialogueItem3);
-            // Negative path:
-            InteractionItem negativeItem1 = new InteractionItem();
-            negativeItem1.MillisecondDelay = 1000;
-            negativeItem1.Name = "NegativeItem1";
-            OutputAction actionN1 = new OutputAction();
-            actionN1.OutputList.Add("Can I help?");
-            actionN1.TargetDialogueItemName = "NegativeItem2";
-            negativeItem1.ActionList.Add(actionN1);
-            dialogue1.ItemList.Add(negativeItem1);
-            InteractionItem negativeItem2 = new InteractionItem();
-            negativeItem2.Name = "NegativeItem2";
-            ResponseAction actionN2 = new ResponseAction();
-            actionN2.SetNegativeInput();
-            actionN2.OutputList.Add("I see.");
-            negativeItem2.ActionList.Add(actionN2);
-            ResponseAction actionN3 = new ResponseAction();
-            actionN3.SetAffirmativeInput();
-            actionN3.OutputList.Add("What do you want me to do?");
-            negativeItem2.ActionList.Add(actionN3);
-            dialogue1.ItemList.Add(negativeItem2);
-            // Positive path:
-            InteractionItem positiveItem1 = new InteractionItem();
-            positiveItem1.MillisecondDelay = 1000;
-            positiveItem1.Name = "PositiveItem1";
-            ResponseAction actionP1 = new ResponseAction();
-            actionP1.OutputList.Add("Would you like to play a game?");
-            actionP1.BrainProcessToDeactivate = dialogue1.Name;
-            positiveItem1.ActionList.Add(actionP1);
-            dialogue1.ItemList.Add(positiveItem1);
-            FinalizeSetup();
-        }
-
-        private void GenerateTestAgent3()
-        {
-            SetUpAgent();
-            // Define brain processes
-            DialogueProcess greetingDialogue = new DialogueProcess();
-            greetingDialogue.Name = "GreetingDialogue";
-            agent.BrainProcessList.Add(greetingDialogue);
-            greetingDialogue.ActiveOnStartup = true;
-            startButton.Enabled = true;
-            InteractionItem dialogueItem1 = new InteractionItem();
-            dialogueItem1.Name = "Item1";
-            ResponseAction action1 = new ResponseAction();
-            action1.InputList.Add("Hello");
-            action1.TargetDialogueItemName = "Item2";
-            action1.OutputList.Add("Hello user");
-            dialogueItem1.ActionList.Add(action1);
-            greetingDialogue.ItemList.Add(dialogueItem1);
-            InteractionItem dialogueItem2 = new InteractionItem();
-            dialogueItem2.MillisecondDelay = 1000;
-            dialogueItem2.Name = "Item2";
-            OutputAction action2 = new OutputAction();
-            action2.TargetDialogueItemName = "Item3";
-            action2.OutputList.Add("How are you today?");
-            dialogueItem2.ActionList.Add(action2);
-            greetingDialogue.ItemList.Add(dialogueItem2);
-            InteractionItem dialogueItem3 = new InteractionItem();
-            dialogueItem3.Name = "Item3";
-            ResponseAction action31 = new ResponseAction();
-            action31.InputList.Add("Not so good");
-            action31.OutputList.Add("I'm sorry to hear that");
-            action31.BrainProcessToDeactivate = "GreetingDialogue";
-            action31.BrainProcessToActivate = "NegativeHealthDialogue";
-            action31.TargetDialogueItemName = "NegativeItem1";
-            dialogueItem3.ActionList.Add(action31);
-            ResponseAction action32 = new ResponseAction();
-            action32.InputList.Add("Fine");
-            action32.OutputList.Add("I'm happy to hear that");
-            action32.BrainProcessToDeactivate = "GreetingDialogue";
-            action32.BrainProcessToActivate = "PositiveHealthDialogue";
-            dialogueItem3.ActionList.Add(action32);
-            greetingDialogue.ItemList.Add(dialogueItem3);
-
-            // Negative health dialogue
-            DialogueProcess negativeHealthDialogue = new DialogueProcess();
-            negativeHealthDialogue.ProcessActivatedOnFailure = greetingDialogue.Name;
-            negativeHealthDialogue.Name = "NegativeHealthDialogue";
-            agent.BrainProcessList.Add(negativeHealthDialogue);
-            negativeHealthDialogue.ActiveOnStartup = false;
-            InteractionItem dialogueItemN1 = new InteractionItem();
-            dialogueItemN1.Name = "Item1";
-            dialogueItemN1.MillisecondDelay = 200;
-            OutputAction actionN1 = new OutputAction();
-            actionN1.OutputList.Add("Can I help?");
-            actionN1.TargetDialogueItemName = "Item2";
-            dialogueItemN1.ActionList.Add(actionN1);
-            negativeHealthDialogue.ItemList.Add(dialogueItemN1);
-            InteractionItem dialogueItemN2 = new InteractionItem();
-            dialogueItemN2.Name = "Item2";
-            ResponseAction actionN2 = new ResponseAction();
-            actionN2.SetNegativeInput();
-            actionN2.OutputList.Add("I see.");
-            dialogueItemN2.ActionList.Add(actionN2);
-            ResponseAction actionN3 = new ResponseAction();
-            actionN3.SetAffirmativeInput();
-            actionN3.OutputList.Add("What do you want me to do?");
-            dialogueItemN2.ActionList.Add(actionN3);
-            negativeHealthDialogue.ItemList.Add(dialogueItemN2);
-
-            // Positive health dialogue
-            DialogueProcess positiveHealthDialogue = new DialogueProcess();
-            positiveHealthDialogue.ProcessActivatedOnFailure = greetingDialogue.Name;
-            positiveHealthDialogue.Name = "PositiveHealthDialogue";
-            agent.BrainProcessList.Add(positiveHealthDialogue);
-            positiveHealthDialogue.ActiveOnStartup = false;
-            InteractionItem dialogueItemP1 = new InteractionItem();
-            dialogueItemP1.Name = "Item1";
-            dialogueItemP1.MillisecondDelay = 200;
-            ResponseAction actionP1 = new ResponseAction();
-            actionP1.OutputList.Add("Would you like to play a game?");
-            dialogueItemP1.ActionList.Add(actionP1);
-            positiveHealthDialogue.ItemList.Add(dialogueItemP1);
-            FinalizeSetup();
-        }
-
-        private void GenerateTestAgent4()
-        {
-            SetUpAgent();
-
-            // Define brain processes
-
-
-
-            // Test of long-term memory (saving and loading)
-          /*  Memory longTermMemory = new Memory();
-            MemoryItem newsItem1 = new MemoryItem();
-            newsItem1.CreationDateTime = DateTime.Now;
-            newsItem1.Tag = "News";
-            newsItem1.Content = "US Election";
-            longTermMemory.InsertItem(newsItem1);
-            Thread.Sleep(100); // Ugly! Only used in order to get a different time stamps for the two news items, for the purpose of demonstration.
-            MemoryItem newsItem2 = new MemoryItem();
-            newsItem2.CreationDateTime = DateTime.Now;
-            newsItem2.Tag = "News";
-            newsItem2.Content = "Earthquake in New Zealand";
-            longTermMemory.InsertItem(newsItem2);
-
-            ObjectXmlSerializer.SerializeObject("./testlongtermmemory.xml", longTermMemory);
-            longTermMemory = (Memory)ObjectXmlSerializer.ObtainSerializedObject("./testlongtermmemory.xml", typeof(Memory));
-            agent.LongTermMemory = longTermMemory;  */
-
-
-
-            // Ugly hard-coding of long-term memory (just a test ...)
-            MemoryItem newsItem1 = new MemoryItem();
-            newsItem1.CreationDateTime = DateTime.Now;
-            newsItem1.Tag = "News";
-            newsItem1.Content = "US Election";
-            agent.WorkingMemory.InsertItem(newsItem1);
-            Thread.Sleep(100); // Ugly! Only used in order to get a different time stamps for the two news items, for the purpose of demonstration.
-            MemoryItem newsItem2 = new MemoryItem();
-            newsItem2.CreationDateTime = DateTime.Now;
-            newsItem2.Tag = "News";
-            newsItem2.Content = "Earthquake in New Zealand";
-            agent.WorkingMemory.InsertItem(newsItem2);  
-
-            DialogueProcess greetingDialogue = new DialogueProcess();
-            greetingDialogue.Name = "GreetingDialogue";
-            agent.BrainProcessList.Add(greetingDialogue);
-            greetingDialogue.ActiveOnStartup = true;
-            startButton.Enabled = true;
-
-            /*  Uncomment the code below to send a facial expression command
-               (OpenEyes) to the facial expression process  
-            // Unconditional opening of the agent's eyes upon start-up:            
-            InteractionItem openEyesDialogueItem = new InteractionItem();
-            openEyesDialogueItem.Name = "OpenEyesItem";
-            OutputAction openEyesAction = new OutputAction();
-            openEyesAction.OutputList.Add("OpenEyes");
-            openEyesAction.OutputTag = MemoryItemTags.FaceProcess;
-            openEyesAction.TargetDialogueItemName = "Item1";
-            openEyesDialogueItem.ActionList.Add(openEyesAction);
-            greetingDialogue.ItemList.Add(openEyesDialogueItem);
-            */
-
-            InteractionItem dialogueItem1 = new InteractionItem();
-            dialogueItem1.Name = "Item1";
-            ResponseAction action1 = new ResponseAction();
-            action1.InputList.Add("Read the news, please");
-            action1.InputList.Add("News");
-            action1.OutputList.Add("OK, just a moment");
-            action1.TargetDialogueItemName = "ReadItem2";
-            dialogueItem1.ActionList.Add(action1);
-            greetingDialogue.ItemList.Add(dialogueItem1);
-   
-       
-            MemoryAccessItem readItem2 = new MemoryAccessItem();
-            readItem2.Name = "ReadItem2";
-            readItem2.MillisecondDelay = 1000;
-            ReadByTagAction readAction2 = new ReadByTagAction();
-            readAction2.Index = 0;
-            readAction2.Tag = "News";
-            readAction2.TargetDialogueItemName = "Item1";
-            readItem2.ActionList.Add(readAction2);
-            greetingDialogue.ItemList.Add(readItem2);
-
-            FinalizeSetup();
-        }
+        
         #endregion
 
         #region GUI action methods
-        private void testAgent1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateTestAgent1();
-        }
-
-        private void testAgent2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateTestAgent2();
-        }
-
-        private void testAgent3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateTestAgent3();
-        }
-
-        private void testAgent4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateTestAgent4();
-        }
+        
 
         private void AgentMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -989,6 +707,9 @@ namespace AgentApplication
             GenerateAgent();
         }
 
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }
